@@ -12,31 +12,56 @@
     </head>
     
     <body>
-        <div class="container">
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="#">LocWeather</a>
-                    </div>
-                    <div id="navbar" class="collapse navbar-collapse">
-                      <ul class="nav navbar-nav">
-                        <li><a id="show_more_weather" href="#">Show More Weather Info</a></li>
-                        <li><a id="show_more_location" href="#">Show More Location Info</a></li>
-                        <li><a id="clear_info" href="#">Clear Info</a></li>
-                      </ul>
-                    </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">LocWeather</a>
                 </div>
-            </nav>
-            <footer>
-                <p>Local Weather &copy; 2015</p>
-            </footer>
+                <div id="navbar" class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a id="show_more_weather" href="#">Show More Weather Info</a></li>
+                    <li><a id="show_more_location" href="#">Show More Location Info</a></li>
+                    <li><a id="clear_info" href="#">Clear Info</a></li>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+            
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">5-22-2015</h3>
+                </div>
+            <div class="panel-body">
+              <h1 id="myLocation" class="text-center"></h1>
+              <div id="more_location_display"></div>
+              <div id="weather"></div>
+              <div id="more_weather_display"></div>
+              <h3>Other Location</h3>
+              <form id="other_location">
+                <div class="form-group">
+                  <input id="city" type="text" class="form-control" placeholder="Enter City">
+                </div>
+                <div class="form-group">
+                  <input id="state" type="text" class="form-control" placeholder="Enter State">
+                </div>
+                <button type="submit" class="btn btn-default btn-block">Submit</button>
+              </form>
+            </div>
         </div>
+        
+        <footer>
+            <p>Local Weather &copy; 2015</p>
+        </footer>
+        
+        </div>
+        
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
