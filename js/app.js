@@ -50,3 +50,26 @@ function getLocation(){
 		});
 	});
 }	
+
+// Get The Weather Info For a Location
+function getWeather(city, state){
+	console.log('Getting Weather For '+city+'...');
+
+	var html = '';
+	$.ajax({
+		url:'http://api.wunderground.com/api/7572efe8c240e098/conditions/q/'+state+'/'+city+'.json',
+		datatype:'jsonp',
+		success: function(parsed_json){
+			console.log(parsed_json.current_observation);
+
+			weather = parsed_json['current_observation']['weather'];
+			temperature_string = parsed_json['current_observation']['temperature_string'];
+			icon_url = parsed_json['current_observation']['icon_url'];
+
+			html = '<h1 class="text-center"><img src="'+icon_url+'"> '+weather+'</h1>' +
+			'<h2 class="text-center">'+temperature_string+'</h2>';
+
+			$('#weather').html(html);
+		}
+	});
+}
