@@ -6,10 +6,25 @@ $(document).ready(function(){
 // Check Device is Ready
 function onDeviceReady(){
 	console.log('Device Ready...');
+	
+	$('#show_more_location').click(function(e){
+		e.preventDefault();
+		getMoreLocation();
+	});
+
+	$('#clear_info').click(function(e){
+		e.preventDefault();
+		clearInfo();
+	});
 
 	getDate();
 
 	getLocation();
+	
+	$('#other_location').click(function(e){
+		e.preventDefault();
+		getOtherLocation()
+	});
 }
 
 // Get, Format & Display Current Date
@@ -46,6 +61,18 @@ function getLocation(){
 				html = '<h1>'+city+', '+state+'</h1>';
 
 				$('#myLocation').html(html);
+				
+				// Get Weather Info
+				getWeather(city, state);
+
+				$('#show_more_weather').click(function(e){
+					e.preventDefault();
+
+				// Close Dropdown Menu
+				$('.navbar-toggle').click();
+
+					getMoreWeather(city, state);
+				});
 			}
 		});
 	});
