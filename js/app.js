@@ -76,7 +76,27 @@ function getLocation(){
 			}
 		});
 	});
-}	
+}
+
+// Get extra location info
+function getMoreLocation(){
+	// Close dropdown menu
+	$('.navbar-toggle').click();
+	
+	var html = '';
+	
+	navigator.geolocation.getCurrentPosition(function(position){
+		html='<ul id="more_location_list" class="list-group">' +
+		'<li class="list-group-item"><strong>Latitude: </strong>'+position.coords.latitude+'</li>' +
+		'<li class="list-group-item"><strong>Longitude: </strong>'+position.coords.longitude+'</li>' +
+		'<li class="list-group-item"><strong>Altitude: </strong>'+position.coords.altitude+'</li>' +
+		'<li class="list-group-item"><strong>Accuracy: </strong>'+position.coords.accuracy+'</li>' +
+		'</ul>';
+
+	$('#more_location_display').html(html);
+	
+	});
+}
 
 // Get The Weather Info For a Location
 function getWeather(city, state){
@@ -99,4 +119,27 @@ function getWeather(city, state){
 			$('#weather').html(html);
 		}
 	});
+}
+
+// Clear extra info
+function clearInfo(){
+	getLocation();
+
+	$('.navbar-toggle').click();
+
+	$('#more_weather_display').html('');
+	$('#more_location_display').html('');
+}
+
+// Get info about another location
+function getOtherLocation(){
+	var html = '';
+	var city = $('#city').val();
+	var state = $('#state').val();
+
+	html = '<h1>'+city+', '+state+'</h1>';
+
+	$('#myLocation').html(html);
+
+	getWeather(city, state);
 }
