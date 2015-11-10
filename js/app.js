@@ -121,6 +121,48 @@ function getWeather(city, state){
 	});
 }
 
+// Display more weather info
+function getMoreWeather(city, state){
+	var html = '';
+	$.ajax({
+		url:'http://api.wunderground.com/api/62d0e72f66a7de1a/conditions/q/'+state+'/'+city+'.json',
+		datatype:'jsonp',
+		success: function(parsed_json){
+			console.log(parsed_json.current_observation);
+
+			temp_f = parsed_json['current_observation']['temp_f'];
+			temp_c = parsed_json['current_observation']['temp_c'];
+			dewpoint_string = parsed_json['current_observation']['dewpoint_string'];
+			dewpoint_f = parsed_json['current_observation']['dewpoint_f'];
+			dewpoint_c = parsed_json['current_observation']['dewpoint_c'];
+			wind_string = parsed_json['current_observation']['wind_string'];
+			wind_dir = parsed_json['current_observation']['wind_dir'];
+			wind_mph = parsed_json['current_observation']['wind_mph'];
+			visibility = parsed_json['current_observation']['visibility'];
+			solarradiation = parsed_json['current_observation']['solarradiation'];
+			relative_humidity = parsed_json['current_observation']['relative_humidity'];
+			local_time = parsed_json['current_observation']['local_time_rfc822'];
+			precip_today_in = parsed_json['current_observation']['precip_today_in'];
+			feelslike_string = parsed_json['current_observation']['feelslike_string'];
+			feelslike_f = parsed_json['current_observation']['feelslike_f'];
+			feelslike_c = parsed_json['current_observation']['feelslike_c'];
+
+			html='<ul id="more_weather_list" class="list-group">' +
+				'<li class="list-group-item"><strong>Feels Like: </strong>'+feelslike_string+'</li>' +
+				'<li class="list-group-item"><strong>Dewpoint: </strong>'+dewpoint_string+'</li>' +
+				'<li class="list-group-item"><strong>Wind: </strong>'+wind_string+'</li>' +
+				'<li class="list-group-item"><strong>Wind Speed: </strong>'+wind_mph+'</li>' +
+				'<li class="list-group-item"><strong>Humidity: </strong>'+relative_humidity+'</li>' +
+				'<li class="list-group-item"><strong>Solar Radiation: </strong>'+solarradiation+'</li>' +
+				'<li class="list-group-item"><strong>Precipitation: </strong>'+precip_today_in+'</li>' +
+				'</ul>';
+
+			$('#more_weather_display').html(html);
+		}
+	});
+}
+
+
 // Clear extra info
 function clearInfo(){
 	getLocation();
